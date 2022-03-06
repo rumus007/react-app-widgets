@@ -6,6 +6,7 @@ const Search = () => {
   const [debounceTerm, setDebounceTerm] = useState(term);
   const [results, setResults] = useState([]);
 
+  //debouce term is only updated after a few seconds and only once
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebounceTerm(term);
@@ -16,6 +17,7 @@ const Search = () => {
     };
   }, [term]);
 
+  //watching debouce term for api call
   useEffect(() => {
     const search = async () => {
       const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
